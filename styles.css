@@ -1,9 +1,11 @@
 
-.title-box {
+.title-box 
+{
   margin-bottom: 2rem;
   text-align: center;
 }
-.title-box h2 {
+.title-box h2 
+{
   background: #fff;
   padding: 1rem 2rem;
   border-radius: 1rem;
@@ -11,7 +13,8 @@
   margin: 0;
 }
 .carousel-control-prev-icon,
-.carousel-control-next-icon {
+.carousel-control-next-icon 
+{
   background-size: 100% 100%;
   width: 3rem;
   height: 3rem;
@@ -21,7 +24,8 @@
   filter: invert(1) grayscale(100);
 }
 
-.journal-box {
+.journal-box 
+{
   max-width: 600px;
   margin: 0 auto;
   background: #f8f9fa;
@@ -30,42 +34,50 @@
   padding: 2rem;
 }
 
-.clinic-search-box {
+.clinic-search-box 
+{
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   padding: 2rem;
 }
 
-.clinic-header {
-  font-size: 2.2rem; /* Adjust as needed */
+.clinic-header 
+{
+  font-size: 2.2rem; /* Adjust maybe */
   font-weight: bold;
 }
 
-@keyframes popFade {
+@keyframes popFade 
+{
   0% {
     opacity: 0;
     transform: scale(0.8);
   }
-  30% {
+  30% 
+  {
     opacity: 1;
     transform: scale(1.1);
   }
-  60% {
+  60% 
+  {
     opacity: 1;
     transform: scale(1);
   }
-  100% {
+  100% 
+  {
     opacity: 0;
     transform: scale(1);
   }
 }
 
-#journalStatus.animated {
+#journalStatus.animated 
+{
   animation: popFade 1.5s;
 }
 
-#scrollTopBtn {
+#scrollTopBtn 
+{
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   transition: opacity 0.3s;
 }
@@ -74,7 +86,8 @@
   color: #fff;
 }
 
-.btn-gradient {
+.btn-gradient 
+{
   background: linear-gradient(90deg, #4f8cff, #38c6ff);
   color: #fff;
   border: none;
@@ -86,19 +99,22 @@
   display: inline-flex;
   align-items: center;
 }
-.btn-gradient:hover {
+.btn-gradient:hover 
+{
   background: linear-gradient(90deg, #38c6ff, #4f8cff);
   transform: translateY(-2px) scale(1.04);
   color: #fff;
 }
 
-/* Gradient header for hero section */
-.header-gradient {
+/* Gradient for hero */
+.header-gradient 
+{
   background: linear-gradient(to right, #4f8cff, #38c6ff);
 }
 
-/* Pop-out effect for journal box */
-.journal-pop {
+/* Popout effect for journal box */
+.journal-pop 
+{
   background: linear-gradient(135deg, #fffbe6 0%, #b8f2e6 100%);
   border: 2px solid #4f8cff;
   box-shadow: 0 8px 32px rgba(79,140,255,0.18);
@@ -108,20 +124,24 @@
   position: relative;
   z-index: 1;
 }
-.journal-pop:hover {
+.journal-pop:hover 
+{
   transform: scale(1.02);
   box-shadow: 0 12px 40px rgba(79,140,255,0.22);
 }
-.journal-pop h4 {
+.journal-pop h4 
+{
   color: #4f8cff;
   font-weight: bold;
 }
-.journal-pop textarea {
+.journal-pop textarea 
+{
   background: #f8faff;
   border: 1.5px solid #b8f2e6;
   border-radius: 0.75rem;
 }
-.journal-pop button {
+.journal-pop button 
+{
   background: linear-gradient(90deg, #4f8cff, #38c6ff);
   border: none;
   color: #fff;
@@ -130,7 +150,8 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   transition: background 0.3s, transform 0.2s;
 }
-.journal-pop button:hover {
+.journal-pop button:hover 
+{
   background: linear-gradient(90deg, #38c6ff, #4f8cff);
   transform: translateY(-2px) scale(1.04);
 }
@@ -140,11 +161,13 @@
   overflow-y: auto;
 }
 
-body {
+body 
+{
   font-family: 'Poppins', Arial, sans-serif;
 }
 
-.section-icon {
+.section-icon 
+{
   color: #4f8cff;
   font-size: 2.5rem;
   vertical-align: middle;
@@ -152,31 +175,36 @@ body {
 
 .bg-mint { background: #b8f2e6 !important; }
 
-.card, .title-box, .journal-box, .clinic-search-box {
+.card, .title-box, .journal-box, .clinic-search-box 
+{
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
 }
 
-.carousel-pop {
+.carousel-pop 
+{
   background: linear-gradient(135deg, #4f8cff 0%, #b8f2e6 100%);
-  /* or try: background: #fffbe6; for a soft yellow */
   box-shadow: 0 8px 32px rgba(79,140,255,0.15);
   border: 2px solid #4f8cff;
   padding: 1.5rem 0;
 }
-.carousel-pop .carousel-item {
+.carousel-pop .carousel-item 
+{
   background: transparent; /* so the gradient shows through */
   color: #222;
 }
-.carousel-pop .carousel-item h5 {
+.carousel-pop .carousel-item h5 
+{
   color: #4f8cff;
   font-weight: bold;
 }
-.carousel-pop .carousel-item p {
+.carousel-pop .carousel-item p 
+{
   color: #222;
 }
-.carousel-pop:hover {
+.carousel-pop:hover 
+{
   transform: scale(1.02);
   transition: transform 0.2s;
 }
