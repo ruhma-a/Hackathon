@@ -1,12 +1,12 @@
 const buttons = document.querySelectorAll('.emoji-btn');
 const response = document.getElementById('moodResponse');
 
-// Mood check-in logic
+// Mood check-in setup
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
-    // Get the selected mood emoji
+    // Get mood emoji
     const mood = btn.textContent;
-    // Set a custom response based on mood
+    // gives custom response based on mood
     let message = "";
     if (mood === "😊") {
       message = "Yay! Glad to hear it 😊";
@@ -24,22 +24,22 @@ buttons.forEach(btn => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Journal functionality
+  // Journal functional
   const journalTextarea = document.getElementById('journalEntry');
   const saveJournalBtn = document.getElementById('saveJournal');
   const journalStatus = document.getElementById('journalStatus');
 
-  // Load saved entry on page load
+  // Load saved entry on page
   const savedEntry = localStorage.getItem('journalEntry');
   if (savedEntry) {
     journalTextarea.value = savedEntry;
   }
 
-  // Journal save functionality
+  // Journal save function
   saveJournalBtn.addEventListener('click', () => {
-    // Save entry to localStorage
+    // Save to localStorage
     localStorage.setItem('journalEntry', journalTextarea.value);
-    // Show animated 'Entry saved!' message
+    // Show animated message
     journalStatus.style.display = 'block';
     journalStatus.classList.add('animated');
     setTimeout(() => {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1500);
   });
 
-  // Clinic search functionality
+  // Clinic search function
   const clinicSearch = document.getElementById('clinicSearch');
   const clinicList = document.getElementById('clinicList');
   if (clinicSearch && clinicList) {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Awareness Quiz functionality
+  // Awareness Quiz function
   const quizForm = document.getElementById('awarenessQuiz');
   const quizResult = document.getElementById('quizResult');
   if (quizForm) {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Scroll to Top Button
+  // "Scroll to top" Button
   const scrollTopBtn = document.getElementById('scrollTopBtn');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 200) {
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           await navigator.share(shareData);
         } catch (err) {
-          // User cancelled or error
+          //  error
         }
       } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(window.location.href);
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
           shareStatus.style.display = 'none';
         }, 1500);
       } else {
-        // Fallback for very old browsers
+        // for very old browsers (just in case)
         prompt("Copy this link:", window.location.href);
       }
     });
