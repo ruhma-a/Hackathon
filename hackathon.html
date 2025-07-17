@@ -39,7 +39,7 @@
         padding: 2rem;
       }
       .clinic-header {
-        font-size: 2.2rem; /* Adjust as needed */
+        font-size: 2.2rem; /* Adjust if needed */
         font-weight: bold;
       }
       .btn-gradient {
@@ -116,14 +116,14 @@
       <button class="btn btn-outline-danger emoji-btn">😠</button>
     </div>
     <div class="mt-4 text-center" id="moodResponse"></div>
-    <!-- Badge appears after 5 check-ins -->
+    <!-- Badge appears after 5 check-ins! -->
     <div class="card text-center my-4" id="badgeCard" style="display:none; max-width: 400px; margin: 0 auto;">
       <div class="card-body">
         <h5 class="card-title"><span class="me-2">🏅</span><span id="badgeTitle">Mood Master</span></h5>
         <p class="card-text" id="badgeDesc">You checked in 5 times! Keep it up!</p>
       </div>
     </div>
-    <!-- Private journal box -->
+    <!-- journal box w privacy -->
     <div class="journal-box my-5 journal-pop">
       <h4 class="mb-3">My Journal</h4>
       <p class="text-muted" style="font-size: 0.95rem;">
@@ -134,7 +134,7 @@
       <button id="saveJournal" class="btn btn-success">Save Entry</button>
       <div id="journalStatus" class="mt-2 text-success" style="display:none;">Entry saved!</div>
     </div>
-    <!-- Emergency contacts modal trigger -->
+    <!-- Emergency contacts modal -->
     <div class="text-center my-4">
       <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#emergencyModal">
         Emergency Contacts
@@ -303,12 +303,12 @@
             });
           });
 
-          // Journal save functionality
+          // Journal save 
           const journalTextarea = document.getElementById('journalEntry');
           const saveJournalBtn = document.getElementById('saveJournal');
           const journalStatus = document.getElementById('journalStatus');
 
-          // Load saved entry on page load
+          // Load saved entry on page
           const savedEntry = localStorage.getItem('journalEntry');
           if (savedEntry) {
             journalTextarea.value = savedEntry;
@@ -317,14 +317,14 @@
           saveJournalBtn.addEventListener('click', () => {
             // Save entry to localStorage
             localStorage.setItem('journalEntry', journalTextarea.value);
-            // Show animated 'Entry saved!' message
+            // Show animated message when entry submitted
             journalStatus.style.display = 'block';
             setTimeout(() => {
               journalStatus.style.display = 'none';
             }, 1500);
           });
 
-          // Clinic search functionality
+          // Clinic search function
           const clinicSearch = document.getElementById('clinicSearch');
           const clinicList = document.getElementById('clinicList');
           if (clinicSearch && clinicList) {
@@ -342,7 +342,7 @@
             });
           }
 
-          // Awareness Quiz functionality
+          // Awareness Quiz function
           const quizForm = document.getElementById('awarenessQuiz');
           const quizResult = document.getElementById('quizResult');
           if (quizForm) {
@@ -441,7 +441,7 @@
       <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
       <script>AOS.init();</script>
       ...
-<!-- All your content above -->
+<!-- All main content above this line-->
 <footer class="bg-primary text-white text-center py-3 mt-5">
   <p class="mb-1">
     Made with 🤍 for NYC Youth |
