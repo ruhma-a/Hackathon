@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hackathon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      .shadow-title {
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      }
+      .title-box {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      .title-box h2 {                                                                                                                                                                                                                                                   
+        background: #fff;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        margin: 0;
+      }
+      .journal-box {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #f8f9fa;
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 2rem;
+      }
+      .clinic-search-box {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        padding: 2rem;
+      }
+      .clinic-header {
+        font-size: 2.2rem; /* Adjust as needed */
+        font-weight: bold;
+      }
+      .btn-gradient {
+        background: linear-gradient(90deg, #4f8cff, #38c6ff);
+        color: #fff;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        transition: background 0.3s, transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+      }
+      .btn-gradient:hover {
+        background: linear-gradient(90deg, #38c6ff, #4f8cff);
+        transform: translateY(-2px) scale(1.04);
+        color: #fff;
+      }
+      body {
+        font-family: 'Poppins', Arial, sans-serif;
+      }
+      .bg-mint { background: #b8f2e6 !important; }
+      .text-coral { color: #ff6f61 !important; }
+      .header-gradient {
+        background: linear-gradient(to right, #4f8cff, #38c6ff);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-gradient py-5 text-center text-white mb-5">
+      <h1 class="display-4 fw-bold mb-3">ThriveNYC: Youth Wellness Starts Here</h1>
+      <p class="lead">Empowering youth with resources for mental and physical health</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Youth Mental Health Hub</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#mental">Mental Health</a></li>
+              <li class="nav-item"><a class="nav-link" href="#nutrition">Nutrition</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Resources</a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#clinic-map">Clinic Map</a></li>
+                  <li><a class="dropdown-item" href="#quiz">Awareness Quiz</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- =========================
+     Mental Health Section
+     ========================= -->
+<section id="mental" class="py-5 bg-light">
+  <div class="container">
+    <div class="title-box">
+      <!-- Section heading with icon -->
+      <h2 class="display-6 fw-bold mb-4">
+        <span class="section-icon me-2">🧠</span>Mental Health
+      </h2>
+      <p class="lead mb-4">Your daily check-in starts here.</p>
+    </div>
+    <!-- Mood check-in buttons -->
+    <div class="d-flex justify-content-center gap-3">
+      <button class="btn btn-outline-primary emoji-btn">😊</button>
+      <button class="btn btn-outline-secondary emoji-btn">😐</button>
+      <button class="btn btn-outline-warning emoji-btn">😢</button>
+      <button class="btn btn-outline-danger emoji-btn">😠</button>
+    </div>
+    <div class="mt-4 text-center" id="moodResponse"></div>
+    <!-- Badge appears after 5 check-ins -->
+    <div class="card text-center my-4" id="badgeCard" style="display:none; max-width: 400px; margin: 0 auto;">
+      <div class="card-body">
+        <h5 class="card-title"><span class="me-2">🏅</span><span id="badgeTitle">Mood Master</span></h5>
+        <p class="card-text" id="badgeDesc">You checked in 5 times! Keep it up!</p>
+      </div>
+    </div>
+    <!-- Private journal box -->
+    <div class="journal-box my-5 journal-pop">
+      <h4 class="mb-3">My Journal</h4>
+      <p class="text-muted" style="font-size: 0.95rem;">
+        <i class="bi bi-lock-fill me-1"></i>
+        Your journal is private and saved only on this device.
+      </p>
+      <textarea id="journalEntry" class="form-control mb-2" rows="5" placeholder="Write your thoughts here..."></textarea>
+      <button id="saveJournal" class="btn btn-success">Save Entry</button>
+      <div id="journalStatus" class="mt-2 text-success" style="display:none;">Entry saved!</div>
+    </div>
+    <!-- Emergency contacts modal trigger -->
+    <div class="text-center my-4">
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#emergencyModal">
+        Emergency Contacts
+      </button>
+    </div>
+  </div>
+</section>
+      <section id="nutrition" class="py-5 bg-mint">
+        <div class="container">
+          <div class="title-box">
+            <h2 class="text-center mb-4">Nutrition</h2>
+          </div>
+          <h4 class="text-center">Discover ways to fuel your body and mind.</h4>
+          <p class="text-center">What's on your plate today? Did you know that what you eat can affect your mood? Food plays a crucial role in your mental and physical well-being. Feeling lethargic, low-energy, or even irritable? It could be your diet. Feeling energized, focused, and ready to take on the day? Your diet might be the reason.
+
+            Eating a balanced diet is essential for maintaining good mental health. Here are some tips to help you make healthier food choices:</p>
+          <div id="nutritionCarousel" class="carousel slide shadow rounded my-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active text-center p-4">
+                <h5>🥗 Eat the Rainbow</h5>
+                <p>Include colorful fruits and veggies in every meal to get a variety of nutrients.</p>
+              </div>
+              <div class="carousel-item text-center p-4">
+                <h5>💧 Stay Hydrated</h5>
+                <p>Drink at least 8 cups of water a day—your brain and body will thank you.</p>
+              </div>
+              <div class="carousel-item text-center p-4">
+                <h5>🍎 Smart Snacking</h5>
+                <p>Choose snacks like apples, nuts, or yogurt instead of chips or candy.</p>
+              </div>
+            </div>
+            <!-- Arrows -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#nutritionCarousel" data-bs-slide="prev">
+              <span aria-hidden="true">
+                <svg width="32" height="32" fill="black" viewBox="0 0 16 16">
+                  <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+              </span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#nutritionCarousel" data-bs-slide="next">
+              <span aria-hidden="true">
+                <svg width="32" height="32" fill="black" viewBox="0 0 16 16">
+                  <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div class="text-center my-4">
+            <a href="https://www.choosemyplate.gov/" target="_blank" class="btn btn-info mx-2">Learn More</a>
+            <a href="https://www.nutrition.gov/topics/nutrition-life-stage/teens" target="_blank" class="btn btn-info mx-2">Nutrition for Teens</a>
+            <a href="https://kidshealth.org/en/teens/food-fitness/" target="_blank" class="btn btn-info mx-2">Teens: Food & Fitness</a>
+          </div>
+        </div>
+      </section>
+      <section id="resources" class="py-5 bg-light">
+        <div class="container">
+          <div class="title-box">
+            <h2 class="text-center mb-4">Resources</h2>
+          </div>
+          <h4 class="text-center">Helpful Links & Support</h4>
+          <ul class="list-group list-group-flush mx-auto" style="max-width: 600px;">
+            <li class="list-group-item"><a href="https://nycwell.cityofnewyork.us/en/" target="_blank">NYC WELL</a> – 24/7 mental health support, chat, text, and call</li>
+            <li class="list-group-item"><a href="https://www.nami.org/Home" target="_blank">NAMI</a> – National Alliance on Mental Illness</li>
+            <li class="list-group-item"><a href="https://www.crisistextline.org/" target="_blank">Crisis Text Line</a> – Text HOME to 741741</li>
+            <li class="list-group-item"><a href="https://www.mentalhealth.gov/" target="_blank">MentalHealth.gov</a> – U.S. government mental health resources</li>
+            <li class="list-group-item"><a href="https://www.nutrition.gov/" target="_blank">Nutrition.gov</a> – Nutrition information and resources</li>
+          </ul>
+          <div id="quiz" class="my-5">
+            <div class="title-box">
+              <h2 class="text-center mb-4">Awareness Quiz</h2>
+            </div>
+            <form id="awarenessQuiz" class="mx-auto" style="max-width: 600px;">
+              <div class="mb-4">
+                <label><strong>1. True or False: Mental health only refers to mental illnesses.</strong></label>
+                <div>
+                  <input type="radio" name="q1" value="false" required> False<br>
+                  <input type="radio" name="q1" value="true"> True
+                </div>
+              </div>
+              <div class="mb-4">
+                <label><strong>2. Which of these can help improve your mood? (Select all that apply)</strong></label>
+                <div>
+                  <input type="checkbox" name="q2" value="exercise"> Exercise<br>
+                  <input type="checkbox" name="q2" value="healthy eating"> Healthy eating<br>
+                  <input type="checkbox" name="q2" value="talking to friends"> Talking to friends<br>
+                  <input type="checkbox" name="q2" value="none"> None of the above
+                </div>
+              </div>
+              <div class="mb-4">
+                <label><strong>3. Who can you talk to if you’re feeling overwhelmed? (Select all that apply)</strong></label>
+                <div>
+                  <input type="checkbox" name="q3" value="trusted adult"> A trusted adult<br>
+                  <input type="checkbox" name="q3" value="friend"> A friend<br>
+                  <input type="checkbox" name="q3" value="mental health professional"> A mental health professional<br>
+                  <input type="checkbox" name="q3" value="no one"> No one
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">Submit Answers</button>
+              <div id="quizResult" class="mt-3"></div>
+            </form>
+            <div class="text-center my-4">
+              <button id="shareBtn" class="btn btn-gradient">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                  <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zm0 1H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+                  <path d="M8 5.5a.5.5 0 0 1 .5.5v2.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 8.793V6a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+                Share this with a friend
+              </button>
+              <span id="shareStatus" class="ms-2 text-success" style="display:none;">Link copied!</span>
+            </div>
+          </div>
+          <div id="clinic-map" class="my-5 text-center">
+            <h5>NYC Wellness Clinics Map</h5>
+            <div style="width:100%;max-width:600px;margin:0 auto;">
+              <iframe
+                src="https://www.google.com/maps?q=nyc+wellness+clinics&output=embed"
+                width="100%"
+                height="400"
+                style="border:0; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+          <div class="clinic-search-box my-5 mx-auto" style="max-width: 600px;">
+            <h2 class="text-center mb-4 clinic-header">Find a Wellness Clinic by Borough or Neighborhood</h2>
+            <input type="text" id="clinicSearch" class="form-control mb-3" placeholder="Search by borough or neighborhood...">
+            <ul id="clinicList" class="list-group list-group-flush">
+              <li class="list-group-item" data-borough="Manhattan" data-neighborhood="Harlem">Harlem Wellness Center – Manhattan</li>
+              <li class="list-group-item" data-borough="Brooklyn" data-neighborhood="Williamsburg">Williamsburg Family Health – Brooklyn</li>
+              <li class="list-group-item" data-borough="Queens" data-neighborhood="Astoria">Astoria Wellness Clinic – Queens</li>
+              <li class="list-group-item" data-borough="Bronx" data-neighborhood="Fordham">Fordham Community Health – Bronx</li>
+              <li class="list-group-item" data-borough="Staten Island" data-neighborhood="St. George">St. George Youth Clinic – Staten Island</li>
+              <!-- Add more clinics as needed -->
+            </ul>
+          </div>
+        </div>
+      </section>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const buttons = document.querySelectorAll('.emoji-btn');
+          const response = document.getElementById('moodResponse');
+      
+          // Mood check-in logic
+          buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              // Get the selected mood emoji
+              const mood = btn.textContent;
+              // Set a custom response based on mood
+              let message = "";
+              if (mood === "😊") {
+                message = "Yay! Glad to hear it 😊";
+              } else if (mood === "😐") {
+                message = "Thanks for sharing. Remember, it's okay to have neutral days.";
+              } else if (mood === "😢") {
+                message = "Sorry you're feeling down. If you need support, we're here for you 💙";
+              } else if (mood === "😠") {
+                message = "It's okay to feel angry sometimes. Take a deep breath and take care of yourself.";
+              } else {
+                message = `Thanks for checking in. You selected: ${mood}`;
+              }
+              response.textContent = message;
+            });
+          });
+
+          // Journal save functionality
+          const journalTextarea = document.getElementById('journalEntry');
+          const saveJournalBtn = document.getElementById('saveJournal');
+          const journalStatus = document.getElementById('journalStatus');
+
+          // Load saved entry on page load
+          const savedEntry = localStorage.getItem('journalEntry');
+          if (savedEntry) {
+            journalTextarea.value = savedEntry;
+          }
+
+          saveJournalBtn.addEventListener('click', () => {
+            // Save entry to localStorage
+            localStorage.setItem('journalEntry', journalTextarea.value);
+            // Show animated 'Entry saved!' message
+            journalStatus.style.display = 'block';
+            setTimeout(() => {
+              journalStatus.style.display = 'none';
+            }, 1500);
+          });
+
+          // Clinic search functionality
+          const clinicSearch = document.getElementById('clinicSearch');
+          const clinicList = document.getElementById('clinicList');
+          if (clinicSearch && clinicList) {
+            clinicSearch.addEventListener('input', function() {
+              const filter = this.value.toLowerCase();
+              Array.from(clinicList.children).forEach(li => {
+                const borough = li.getAttribute('data-borough').toLowerCase();
+                const neighborhood = li.getAttribute('data-neighborhood').toLowerCase();
+                if (borough.includes(filter) || neighborhood.includes(filter) || li.textContent.toLowerCase().includes(filter)) {
+                  li.style.display = '';
+                } else {
+                  li.style.display = 'none';
+                }
+              });
+            });
+          }
+
+          // Awareness Quiz functionality
+          const quizForm = document.getElementById('awarenessQuiz');
+          const quizResult = document.getElementById('quizResult');
+          if (quizForm) {
+            quizForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              let score = 0;
+              // Q1: False is correct
+              if (quizForm.q1.value === 'false') score++;
+              // Q2: Exercise, healthy eating, talking to friends (not 'none')
+              const q2 = Array.from(quizForm.querySelectorAll('input[name="q2"]:checked')).map(cb => cb.value);
+              if (
+                q2.includes('exercise') &&
+                q2.includes('healthy eating') &&
+                q2.includes('talking to friends') &&
+                !q2.includes('none')
+              ) score++;
+              // Q3: All except 'no one'
+              const q3 = Array.from(quizForm.querySelectorAll('input[name="q3"]:checked')).map(cb => cb.value);
+              if (
+                q3.includes('trusted adult') &&
+                q3.includes('friend') &&
+                q3.includes('mental health professional') &&
+                !q3.includes('no one')
+              ) score++;
+              // Show result
+              quizResult.innerHTML = `<strong>Your score: ${score}/3</strong><br>
+                ${score === 3 ? "Great job! You're very aware!" : "Keep learning and taking care of your mental health!"}`;
+            });
+          }
+        });
+      </script>
+      
+      <div class="modal fade" id="emergencyModal" tabindex="-1" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="emergencyModalLabel">Emergency Contacts</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul class="list-unstyled">
+                <li><strong>NYC WELL:</strong> <a href="https://nycwell.cityofnewyork.us/en/" target="_blank">nycwell.cityofnewyork.us</a> | Call: 1-888-NYC-WELL (1-888-692-9355)</li>
+                <li><strong>National Suicide Prevention Lifeline:</strong> 988</li>
+                <li><strong>Crisis Text Line:</strong> Text HOME to 741741</li>
+                <li><strong>Emergency:</strong> 911</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button id="scrollTopBtn" title="Go to top" class="btn btn-primary" style="position:fixed;bottom:40px;right:40px;display:none;z-index:9999;border-radius:50%;width:48px;height:48px;font-size:1.5rem;">
+        ↑
+      </button>
+      <script>
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 200) {
+            scrollTopBtn.style.display = 'block';
+          } else {
+            scrollTopBtn.style.display = 'none';
+          }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      </script>
+      <script>
+        const shareBtn = document.getElementById('shareBtn');
+        const shareStatus = document.getElementById('shareStatus');
+        if (shareBtn) {
+          shareBtn.addEventListener('click', async () => {
+            const shareData = {
+              title: document.title,
+              text: "Check out this Youth Mental Health Hub!",
+              url: window.location.href
+            };
+            if (navigator.share) {
+              try {
+                await navigator.share(shareData);
+              } catch (err) {
+                // User cancelled or error
+              }
+            } else if (navigator.clipboard) {
+              await navigator.clipboard.writeText(window.location.href);
+              shareStatus.style.display = 'inline';
+              setTimeout(() => {
+                shareStatus.style.display = 'none';
+              }, 1500);
+            } else {
+              prompt("Copy this link:", window.location.href);
+            }
+          });
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+      <script>AOS.init();</script>
+      ...
+<!-- All your content above -->
+<footer class="bg-primary text-white text-center py-3 mt-5">
+  <p class="mb-1">
+    Made with 🤍 for NYC Youth |
+    <a href="#" class="text-white text-decoration-underline" id="footerShare">Share this with a friend</a>
+  </p>
+  <small>
+    Built for the CUNY Tech Equity Summer Guild Program Hackathon
+  </small>
+  <div class="mt-2">
+    <a href="https://www.linkedin.com/in/ruhmaarshad" target="_blank" class="text-white me-3" style="font-size:1.5rem;">
+      <i class="bi bi-linkedin"></i> LinkedIn
+    </a>
+    <a href="https://github.com/ruhma-a" target="_blank" class="text-white" style="font-size:1.5rem;">
+      <i class="bi bi-github"></i> GitHub
+    </a>
+  </div>
+</footer>
+  </body>
+</html>
