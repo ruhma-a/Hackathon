@@ -1,27 +1,3 @@
-const buttons = document.querySelectorAll('.emoji-btn');
-const response = document.getElementById('moodResponse');
-
-// Mood check-in setup
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Get mood emoji
-    const mood = btn.textContent;
-    // gives custom response based on mood
-    let message = "";
-    if (mood === "😊") {
-      message = "Yay! Glad to hear it 😊";
-    } else if (mood === "😐") {
-      message = "Thanks for sharing. Remember, it's okay to have neutral days.";
-    } else if (mood === "😢") {
-      message = "Sorry you're feeling down. If you need support, we're here for you 💙";
-    } else if (mood === "😠") {
-      message = "It's okay to feel angry sometimes. Take a deep breath and take care of yourself.";
-    } else {
-      message = `Thanks for checking in. You selected: ${mood}`;
-    }
-    response.textContent = message;
-  });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Journal functional
@@ -142,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   // Mood check-in logic
- document.addEventListener('DOMContentLoaded', () => {
   const buttons = document.querySelectorAll('.emoji-btn');
   const moodResponse = document.getElementById('moodResponse');
   const moodCounter = document.getElementById('moodCounter');
