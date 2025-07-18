@@ -141,19 +141,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  / Initialize counter on page load
-  const moodCounter = document.getElementById('moodCounter');
-  if (moodCounter) {
-    moodCounter.textContent = moodCount;
-  }
-
   // Mood check-in logic
+ document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.emoji-btn');
+  const moodResponse = document.getElementById('moodResponse');
+  const moodCounter = document.getElementById('moodCounter');
+
+  // Load saved count
+  let moodCount = parseInt(localStorage.getItem('moodCount')) || 0;
+  moodCounter.textContent = moodCount;
+
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Get the selected mood emoji
       const mood = btn.textContent;
-      // Set a custom response based on mood
       let message = "";
+
       if (mood === "😊") {
         message = "Yay! Glad to hear it 😊";
       } else if (mood === "😐") {
@@ -165,42 +167,19 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         message = `Thanks for checking in. You selected: ${mood}`;
       }
-      response.textContent = message;
 
-      // Update mood counter
+      moodResponse.textContent = message;
+
+      // Update count
       moodCount++;
       localStorage.setItem('moodCount', moodCount);
+      moodCounter.textContent = moodCount;
 
-      // Update counter display
-      if (moodCounter) {
-        moodCounter.textContent = moodCount;
+      // Optional: show badge
+      const badge = document.getElementById('badgeCard');
+      if (badge && moodCount === 5) {
+        badge.style.display = 'block';
       }
-
-      // Show badge after 5 check-ins
-      if (moodCount === 5) {
-        document.getElementById('badgeCard').style.display = 'block';
-      }
-    });
-  });
-});
-    document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.emoji-btn');
-  const moodResponse = document.getElementById('moodResponse');
-  const checkinCount = document.getElementById('checkinCount');
-
-  // Load saved count from localStorage
-  let count = localStorage.getItem('checkinCount') || 0;
-  checkinCount.textContent = count;
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const mood = btn.textContent;
-      moodResponse.textContent = `Thanks for sharing. You selected: ${mood}`;
-
-      // Increment and store count
-      count++;
-      localStorage.setItem('checkinCount', count);
-      checkinCount.textContent = count;
     });
   });
 });
