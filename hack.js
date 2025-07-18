@@ -183,3 +183,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+    document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.emoji-btn');
+  const moodResponse = document.getElementById('moodResponse');
+  const checkinCount = document.getElementById('checkinCount');
+
+  // Load saved count from localStorage
+  let count = localStorage.getItem('checkinCount') || 0;
+  checkinCount.textContent = count;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mood = btn.textContent;
+      moodResponse.textContent = `Thanks for sharing. You selected: ${mood}`;
+
+      // Increment and store count
+      count++;
+      localStorage.setItem('checkinCount', count);
+      checkinCount.textContent = count;
+    });
+  });
+});
