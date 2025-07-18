@@ -141,12 +141,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+  / Initialize counter on page load
+  const moodCounter = document.getElementById('moodCounter');
+  if (moodCounter) {
+    moodCounter.textContent = moodCount;
+  }
 
-  let moodCount = Number(localStorage.getItem('moodCount') || 0);
+  // Mood check-in logic
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
+      // Get the selected mood emoji
+      const mood = btn.textContent;
+      // Set a custom response based on mood
+      let message = "";
+      if (mood === "😊") {
+        message = "Yay! Glad to hear it 😊";
+      } else if (mood === "😐") {
+        message = "Thanks for sharing. Remember, it's okay to have neutral days.";
+      } else if (mood === "😢") {
+        message = "Sorry you're feeling down. If you need support, we're here for you 💙";
+      } else if (mood === "😠") {
+        message = "It's okay to feel angry sometimes. Take a deep breath and take care of yourself.";
+      } else {
+        message = `Thanks for checking in. You selected: ${mood}`;
+      }
+      response.textContent = message;
+
+      // Update mood counter
       moodCount++;
       localStorage.setItem('moodCount', moodCount);
+
+      // Update counter display
+      if (moodCounter) {
+        moodCounter.textContent = moodCount;
+      }
+
+      // Show badge after 5 check-ins
       if (moodCount === 5) {
         document.getElementById('badgeCard').style.display = 'block';
       }
